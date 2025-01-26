@@ -1,14 +1,6 @@
-"""
-Main script for the Enrollment App.
-
-This script provides a GUI for updating master Excel spreadsheets
-with data from other Excel files in a selected folder.
-"""
-
 import os
 import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
-import time
 import threading
 import openpyxl
 
@@ -23,14 +15,12 @@ def browse_master_file():
         master_file_entry.delete(0, tk.END)
         master_file_entry.insert(0, filepath)
 
-
 def browse_folder():
     """Opens a file dialog to select the folder."""
     folder_path = filedialog.askdirectory()
     if folder_path:
         folder_entry.delete(0, tk.END)
         folder_entry.insert(0, folder_path)
-
 
 def update_spreadsheet(master_file_path, new_file_path):
     """Updates the master spreadsheet with data from a new file."""
@@ -70,13 +60,11 @@ def update_spreadsheet(master_file_path, new_file_path):
         raise  # Optionally re-raise the exception for debugging
     return False
 
-
 def update_progress(current_file, total_files):
     """Updates the progress bar and status label."""
     progress_bar['value'] = (current_file / total_files) * 100
     status_label.config(text=f"Processing file {current_file} of {total_files}")
     root.update_idletasks()
-
 
 def start_update():
     """Starts the spreadsheet update process in a separate thread."""
