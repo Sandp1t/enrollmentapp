@@ -1,0 +1,43 @@
+# Byte-compiled Python files
+*.pyc
+*.pyo
+__pycache__/
+
+# Virtual environment
+.venv/
+
+# System-specific files
+.DS_Store
+Thumbs.db
+
+# Logs and databases
+*.log
+*.sqlite3
+
+# VS Code settings
+.vscode/
+
+# Python packaging files
+*.egg
+*.egg-info/
+dist/
+build/
+*.spec
+
+# Jupyter Notebook checkpoints (if applicable)
+.ipynb_checkpoints/
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*.swo
+~$*
+
+# Environment files
+.env
+*.env
+
+# Node.js dependencies (if using Node tools)
+node_modules/
+npm-debug.log
