@@ -24,6 +24,10 @@ dist/
 build/
 *.spec
 
+# Allow specific files in the build folder
+!build/main/*.toc
+!build/main/*.pkg
+
 # Jupyter Notebook checkpoints (if applicable)
 .ipynb_checkpoints/
 
