@@ -12,17 +12,30 @@ from tkinter import filedialog, messagebox, ttk
 import threading
 import time
 import openpyxl
+import pandas as pd
 
 
 def browse_master_file():
     """Opens a file dialog to select the master spreadsheet."""
     filepath = filedialog.askopenfilename(
+        title="Select Master Spreadsheet",
         defaultextension=".xlsx",
-        filetypes=[("Excel files", "*.xlsx"), ("All files", "*.*")],
+        filetypes=[("Excel files", "*.xlsx"), ("All files", "*.*")]
     )
     if filepath:
-        master_file_entry.delete(0, tk.END)
-        master_file_entry.insert(0, filepath)
+        try:
+            # Validate if it's a readable Excel file
+            temp_df = pd.read_excel(filepath, nrows=1)  # Read only the first row for validation
+            if 'CRN' not in temp_df.columns:  # Check for the required 'CRN' column
+                raise ValueError("Selected file does not have the required 'CRN' column.")
+            master_file_entry.delete(0, tk.END)
+            master_file_entry.insert(0, filepath)
+        except FileNotFoundError:
+            messagebox.showerror("Error", "File not found. Please select a valid file.")
+        except ValueError as ve:
+            messagebox.showerror("Error", str(ve))
+        except PermissionError:
+            messagebox.showerror("Error", "Permission denied. Check the file's permissions.")
 
 
 def browse_folder():

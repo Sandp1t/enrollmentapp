@@ -1,21 +1,19 @@
 [Setup]
 AppName=Enrollment App
 AppVersion=1.0
-DefaultDirName={autopf}\EnrollmentApp
-DefaultGroupName=Enrollment App
+DefaultDirName={pf}\EnrollmentApp
+DefaultGroupName=EnrollmentApp
 OutputBaseFilename=EnrollmentAppInstaller
-Compression=lzma2
+Compression=lzma
 SolidCompression=yes
-PrivilegesRequired=lowest
 
 [Files]
-Source: "dist\enrollment.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "app_icon.ico"; DestDir: "{app}"; Flags: ignoreversion
-Source: "README.txt"; DestDir: "{app}"
+Source: "dist\EnrollmentApp.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "resources\*"; DestDir: "{app}\resources"; Flags: ignoreversion recursesubdirs
 
 [Icons]
-Name: "{group}\Enrollment App"; Filename: "{app}\enrollment.exe"; IconFilename: "{app}\app_icon.ico"
-Name: "{userdesktop}\Enrollment App"; Filename: "{app}\enrollment.exe"; IconFilename: "{app}\app_icon.ico"
+Name: "{group}\Enrollment App"; Filename: "{app}\EnrollmentApp.exe"; IconFilename: "app_icon.ico"
+Name: "{group}\Uninstall Enrollment App"; Filename: "{uninstallexe}"
 
 [Run]
-Filename: "{app}\enrollment.exe"; Description: "Launch Enrollment App"; Flags: nowait postinstall
+Filename: "{app}\EnrollmentApp.exe"; Description: "Launch Enrollment App"; Flags: nowait postinstall skipifsilent
